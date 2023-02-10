@@ -75,4 +75,16 @@ class TrackOrders:
         return busiest_day
 
     def get_least_busy_day(self):
-        pass
+        least_busy_day = None
+        least_busy_day_times = 0
+
+        for day in self.days:
+            least_busy_day_times = self.days[day]
+            break
+
+        for day in self.days:
+            if self.days[day] <= least_busy_day_times:
+                least_busy_day_times = self.days[day]
+                least_busy_day = day
+
+        return least_busy_day
