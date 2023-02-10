@@ -31,6 +31,9 @@ class InventoryControl:
                 self.available_dishes.discard(dish)
 
     def add_new_order(self, customer, order, day):
+        if order not in self.available_dishes:
+            return False
+
         for ingredient in self.INGREDIENTS[order]:
             if self.inventory[ingredient] < self.MINIMUM_INVENTORY[ingredient]:
                 self.inventory[ingredient] += 1
