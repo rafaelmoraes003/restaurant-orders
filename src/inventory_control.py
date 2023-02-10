@@ -21,9 +21,7 @@ class InventoryControl:
     def __init__(self):
         self.track_orders = TrackOrders()
         self.inventory = {
-            ingredient: 0
-            for ingredient
-            in self.MINIMUM_INVENTORY.keys()
+            ingredient: 0 for ingredient in self.MINIMUM_INVENTORY.keys()
         }
         self.available_dishes = set(self.INGREDIENTS.keys())
 
