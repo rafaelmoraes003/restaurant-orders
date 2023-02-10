@@ -31,7 +31,17 @@ class TrackOrders:
             self.days[day] += 1
 
     def get_most_ordered_dish_per_customer(self, customer):
-        pass
+        customer_orders = self.get_orders_by_customer(customer)
+
+        most_ordered = None
+        most_ordered_times = 0
+
+        for order in customer_orders:
+            if customer_orders[order] > most_ordered_times:
+                most_ordered_times = customer_orders[order]
+                most_ordered = order
+
+        return most_ordered
 
     def get_never_ordered_per_customer(self, customer):
         pass
