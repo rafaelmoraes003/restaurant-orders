@@ -6,6 +6,18 @@ class TrackOrders:
     def __len__(self):
         return len(self.orders)
 
+    def get_orders_by_customer(self, customer):
+        customer_orders = {}
+
+        for order in self.orders:
+            if order["customer"] == customer:
+                if order["order"] not in customer_orders:
+                    customer_orders[order["order"]] = 1
+                else:
+                    customer_orders[order["order"]] += 1
+
+        return customer_orders
+
     def add_new_order(self, customer, order, day):
         self.orders.append({
             "customer": customer,
