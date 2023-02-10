@@ -36,7 +36,9 @@ class InventoryControl:
         for ingredient in self.INGREDIENTS[order]:
             if self.inventory[ingredient] < self.MINIMUM_INVENTORY[ingredient]:
                 self.inventory[ingredient] += 1
-                if self.inventory[ingredient] >= self.MINIMUM_INVENTORY[ingredient]:
+                if self.inventory[ingredient] >= self.MINIMUM_INVENTORY[
+                    ingredient
+                ]:
                     self.delete_dishes_that_contain_ingredient(ingredient)
             else:
                 return False
