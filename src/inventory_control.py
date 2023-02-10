@@ -25,15 +25,26 @@ class InventoryControl:
             for ingredient
             in self.MINIMUM_INVENTORY.keys()
         }
+        self.available_dishes = set(self.INGREDIENTS.keys())
+
+    def delete_dishes_that_contain_ingredient(self, ingredient):
+        for dish in self.INGREDIENTS:
+            if ingredient in self.INGREDIENTS[dish]:
+                self.available_dishes.discard(dish)
 
     def add_new_order(self, customer, order, day):
-        # É garantido que os pedidos da semana
-        # não irão zerar nenhum dos estoques.
-
         for ingredient in self.INGREDIENTS[order]:
-            self.inventory[ingredient] += 1
+            if self.inventory[ingredient] < self.MINIMUM_INVENTORY[ingredient]:
+                self.inventory[ingredient] += 1
+                if self.inventory[ingredient] >= self.MINIMUM_INVENTORY[ingredient]:
+                    self.delete_dishes_that_contain_ingredient(ingredient)
+            else:
+                return False
 
         self.track_orders.add_new_order(customer, order, day)
 
     def get_quantities_to_buy(self):
         return self.inventory
+
+    def get_available_dishes(self):
+        return self.available_dishes
