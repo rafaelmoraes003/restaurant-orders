@@ -76,3 +76,11 @@ def analyze_log(path_to_file):
         return
     except FileNotFoundError:
         raise FileNotFoundError(f"Arquivo inexistente: '{path_to_file}'")
+
+
+if __name__ == "__main__":
+    analyze_log("data/orders_1.csv")
+
+    with open("data/mkt_campaign.txt", mode="r") as file:
+        content = file.read()
+        print(content)

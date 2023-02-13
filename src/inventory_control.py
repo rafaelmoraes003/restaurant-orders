@@ -51,3 +51,26 @@ class InventoryControl:
 
     def get_available_dishes(self):
         return self.available_dishes
+
+
+if __name__ == "__main__":
+
+    csv_parsed = [
+        ["maria", "pizza", "terça-feira"],
+        ["maria", "hamburguer", "terça-feira"],
+        ["joao", "hamburguer", "terça-feira"],
+        ["maria", "coxinha", "segunda-feira"],
+        ["arnaldo", "misto-quente", "terça-feira"],
+        ["jose", "hamburguer", "sabado"],
+        ["maria", "hamburguer", "terça-feira"],
+        ["maria", "hamburguer", "terça-feira"],
+        ["joao", "hamburguer", "terça-feira"],
+    ]
+
+    inventory_control = InventoryControl()
+
+    for name, food, day in csv_parsed:
+        inventory_control.add_new_order(name, food, day)
+
+    print(inventory_control.get_available_dishes())
+    print(inventory_control.get_quantities_to_buy())

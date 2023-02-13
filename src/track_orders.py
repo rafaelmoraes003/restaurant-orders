@@ -88,3 +88,29 @@ class TrackOrders:
                 least_busy_day = day
 
         return least_busy_day
+
+
+if __name__ == "__main__":
+
+    csv_parsed = [
+        ["maria", "pizza", "terça-feira"],
+        ["maria", "hamburguer", "terça-feira"],
+        ["joao", "hamburguer", "terça-feira"],
+        ["maria", "coxinha", "segunda-feira"],
+        ["arnaldo", "misto-quente", "terça-feira"],
+        ["jose", "hamburguer", "sabado"],
+        ["maria", "hamburguer", "terça-feira"],
+        ["maria", "hamburguer", "terça-feira"],
+        ["joao", "hamburguer", "terça-feira"],
+    ]
+
+    track_orders = TrackOrders()
+
+    for name, food, day in csv_parsed:
+        track_orders.add_new_order(name, food, day)
+
+    print(track_orders.get_most_ordered_dish_per_customer("maria"))
+    print(track_orders.get_never_ordered_per_customer("arnaldo"))
+    print(track_orders.get_days_never_visited_per_customer("joao"))
+    print(track_orders.get_busiest_day())
+    print(track_orders.get_least_busy_day())
